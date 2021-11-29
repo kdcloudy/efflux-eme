@@ -1,0 +1,97 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Efflux</title>
+    <link href="./style.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <script src="script/dash.all.js"></script>
+
+  <body>
+    <div class="navlogo" style="margin-left: 50px; margin-top: 15px">
+      <a href="/"
+        ><p style="color: #21afb8; font-size: 50px; cursor: pointer">
+          efflux
+        </p></a
+      >
+    </div>
+    <h2 style="font-weight: bold; text-align: center">
+      Demonstrating an encrypted video stream
+    </h2>
+    <div
+      class="container"
+      style="margin-top: 25px; margin-left: 140px; padding-bottom: 10px"
+    >
+      <video id="html5video2" width="500" height="300" controls>
+        <source src="./unencrypted/unenc-video.mp4" type="video/mp4"></source>
+        <!--add unencrypted vid url-->
+      </video>
+
+      <video
+        id="html5video"
+        width="500"
+        height="300"
+        controls
+        style="margin-left: 100px"
+        autoplay
+      >
+        <!--add encrypted vid url-->
+     
+        
+      </video>
+    </div>
+    <div style="font-size: 25px; font-weight: bold">
+      <p style="margin-left: 21.5%; float: left">Not encrypted</p>
+      <p style="margin-left: 66%">Encrypted</p>
+    </div>
+
+    <p style="margin-left: 100px; margin-top: 30px; font-weight: bold">
+      Stream info:<br />
+      Video Codec: avc1.640029<br />
+      Audio Codec: mp4a.40.2<br />
+      Encrypted using: MPEG-Common Encryption (CENC)<br />
+    </p>
+  </body>
+  <script>
+            // setup the video element and attach it to the Dash player
+            var url = "./encrypted/stream.mpd";
+            var context = new Dash.di.DashContext();
+            var player = new MediaPlayer(context);
+            player.startup();
+            player.attachView(document.querySelector("#html5video"));
+            player.attachSource(url);
+        </script>
+        <script src="script/main.js"></script>
+
+  <!-- <script class="code">
+    function init() {
+      const protData = {
+        "org.w3.clearkey": {
+          "clearkeys": {
+            "hyN9IKGfWKdAwFaE5pm0qg": "oW5AK5BW43HzbTSKpiu3SQ",
+          },
+        },
+      };
+      var video,
+        player,
+        url = "./nttdtrailer/stream.mpd";
+
+      video = document.querySelector("#html5video");
+      player = dashjs.MediaPlayer().create();
+      player.initialize(video, url, true);
+      player.setProtectionData(protData);
+    }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        init();
+    });
+</script> -->
+</html>
